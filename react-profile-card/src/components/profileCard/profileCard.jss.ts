@@ -23,8 +23,8 @@ export const ProfileCardStyle = createUseStyles (() => ({
    },
 
    headerImage: {
-      position: "relative",
-      top: "87px",
+      alignSelf: "flex-end",
+      margin: "-16%"
    },
 
    body: {

@@ -14,7 +14,7 @@ interface IProfileCardProps {
 export const ProfileCard = (props: IProfileCardProps) => {
    const profileCardStyle = ProfileCardStyle();
 
-   const stats = props.user.stats.map((stat) => <StatsBox title={stat.name} value={stat.value} /> );
+   const stats = props.user.stats.map((stat) => <StatsBox key={stat.name} title={stat.name} value={stat.value} /> );
 
    return (
       <>
