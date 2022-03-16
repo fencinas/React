@@ -3,29 +3,33 @@ import { RoundImage } from "../common/images/images";
 import { StatsBox } from "../common/boxes/statsBox/statsBox";
 import { InfoBox } from "../common/boxes/infoBox/infoBox";
 import { palette } from "../../styles/colors";
-import { images } from "../../styles/images";
 import { borders } from "../../styles/borders";
 import { widths } from "../../styles/widths";
+import IUser from "../../models/user";
 
-export const ProfileCard = () => {
+interface IProfileCardProps {
+   user: IUser;
+}
+
+export const ProfileCard = (props: IProfileCardProps) => {
    const profileCardStyle = ProfileCardStyle();
+
+   const stats = props.user.stats.map((stat) => <StatsBox title={stat.name} value={stat.value} /> );
 
    return (
       <>
          <div className={profileCardStyle.container}>
             <div className={profileCardStyle.header}>
                <div className={profileCardStyle.headerImage}>
-                  <RoundImage src={images.imageProfile} alt="Fran Encinas" width={widths.profileCard.image} height={widths.profileCard.image} 
+                  <RoundImage src={props.user.picture} alt={props.user.name} width={widths.profileCard.image} height={widths.profileCard.image} 
                               borderWidth={borders.profileCard.image} borderColor={palette.white} />
                </div>
             </div>
             <div className={profileCardStyle.body}>
-               <InfoBox name="Fran Encinas" age="37" location="Valencia" />
+               <InfoBox name={props.user.name} age={props.user.age} location={props.user.location} />
             </div>
             <div className={profileCardStyle.footer}>
-               <StatsBox title="Followers" value="80K" />
-               <StatsBox title="Likes" value="803K" />
-               <StatsBox title="Photos" value="1.4K" />
+               {stats}
             </div>
          </div>
       </>
